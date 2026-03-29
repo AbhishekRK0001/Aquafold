@@ -1410,41 +1410,37 @@
 
 
 
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-  const supabase = supabase.createClient(
-    'https://psgsdwfwywldievwusyi.supabase.co',  // paste your URL
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBzZ3Nkd2Z3eXdsZGlldnd1c3lpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ3Nzg0NTUsImV4cCI6MjA5MDM1NDQ1NX0.py8IZHecrbGhPMY9jWiawHaN7fZ9kv9pWfz6GnoSABo'                           // paste your anon key
+  const { createClient } = supabase;
+  const db = createClient(
+    'https://psgsdwfwywldievwusyi.supabase.co',  // your URL ✓
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBzZ3Nkd2Z3eXdsZGlldnd1c3lpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ3Nzg0NTUsImV4cCI6MjA5MDM1NDQ1NX0.py8IZHecrbGhPMY9jWiawHaN7fZ9kv9pWfz6GnoSABo'   // your anon key ✓
   );
 
-  // This replaces the submitOrder() function in your site
   async function submitOrder() {
-    const name  = document.querySelector('.modal-input:nth-child(1)').value;
-    const email = document.querySelector('.modal-input:nth-child(2)').value;
-    const phone = document.querySelector('.modal-input:nth-child(3)').value;
+    const name  = document.querySelectorAll('.modal-input')[0].value;
+    const email = document.querySelectorAll('.modal-input')[1].value;
+    const phone = document.querySelectorAll('.modal-input')[2].value;
 
     if (!name || !email) {
       showToast('Please fill in your name and email.');
       return;
     }
 
-    const { error } = await supabase
+    const { error } = await db
       .from('orders')
       .insert([{ name, email, phone }]);
 
     if (error) {
+      console.error('Supabase error:', error);
       showToast('Something went wrong. Try again!');
     } else {
       document.getElementById('modal').classList.remove('open');
-      showToast('Your order request has been received!');
+      showToast('Your order request has been received! ✓');
     }
   }
 </script>
-
-
-
-
 
 
 </body>
