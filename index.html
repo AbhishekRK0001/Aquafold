@@ -693,112 +693,279 @@
     transition: width 0.1s;
   }
 
-  /* ── RESPONSIVE ── */
+  /* ── VIDEO & ABOUT IMAGE HELPERS ── */
+  .product-video {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+    border-radius: var(--radius);
+  }
+  .gallery-video {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+    min-height: 200px;
+  }
+  .about-img-tall { height: 380px; }
+  .about-img-short { height: 180px; }
+
+  /* ── GALLERY: 6-item perfect layout (desktop) ──
+     Item 1 (video): spans 2 cols × 2 rows (big hero)
+     Items 2,3,4: one per cell in right column stack
+     Item 5 (video): spans 2 cols
+     Item 6: 1 col
+  */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto auto;
+    gap: 14px;
+    margin-top: 56px;
+  }
+  .gallery-item:nth-child(1) { grid-column: 1 / 3; grid-row: 1 / 3; min-height: 360px; }
+  .gallery-item:nth-child(2) { grid-column: 3; grid-row: 1; }
+  .gallery-item:nth-child(3) { grid-column: 3; grid-row: 2; }
+  .gallery-item:nth-child(4) { grid-column: 1; grid-row: 3; }
+  .gallery-item:nth-child(5) { grid-column: 2 / 4; grid-row: 3; }
+  .gallery-item:nth-child(6) { grid-column: 1; grid-row: 3; }
+
+  /* recalculate: 4,5,6 in row 3 */
+  .gallery-item:nth-child(4) { grid-column: 1; grid-row: 3; }
+  .gallery-item:nth-child(5) { grid-column: 2; grid-row: 3; }
+  .gallery-item:nth-child(6) { grid-column: 3; grid-row: 3; }
+
+  .gallery-item { min-height: 200px; }
+  .gallery-item img, .gallery-video {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+    transition: transform 0.5s ease;
+    min-height: 200px;
+  }
+
+  /* ── PRODUCT VIDEO WRAPPER ── */
+  .product-video-wrap {
+    width: 100%;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+    aspect-ratio: 16/7;
+  }
+  .product-video-wrap video {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+  }
+
+  /* ═══════════════════════════════════════════
+     TABLET  (≤ 900px)
+  ═══════════════════════════════════════════ */
   @media(max-width: 900px) {
+    /* NAV */
     .nav-links { display: none; }
     .hamburger { display: flex; }
     .mobile-menu { display: flex; }
-    .hero-inner { grid-template-columns: 1fr; text-align: center; }
+
+    /* SECTION padding */
+    section { padding: 72px 5%; }
+    #cta { padding: 72px 5%; }
+
+    /* HERO */
+    .hero-inner { grid-template-columns: 1fr; text-align: center; gap: 32px; }
+    .hero-content { order: 2; }
+    .hero-visual  { order: 1; }
+    .hero-tag { margin: 0 auto 20px; }
     .hero-sub { max-width: 100%; }
     .hero-actions { justify-content: center; }
-    .hero-visual { order: -1; }
-    .hero-float-card.card-1 { left: 0; }
-    .hero-float-card.card-2 { right: 0; }
-    .about-grid, .tech-grid, .sustain-grid { grid-template-columns: 1fr; gap: 40px; }
-    .features-grid { grid-template-columns: 1fr; }
-    .products-intro { grid-template-columns: 1fr; }
+    .hero-float-card.card-1 { left: 2%; }
+    .hero-float-card.card-2 { right: 2%; }
+
+    /* ABOUT */
+    .about-grid { grid-template-columns: 1fr; gap: 36px; }
+    .stat-row { flex-wrap: wrap; gap: 20px; }
+
+    /* FEATURES */
+    .features-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    /* PRODUCTS */
+    .products-intro { grid-template-columns: 1fr; gap: 20px; margin-bottom: 32px; }
     .products-showcase { grid-template-columns: 1fr; }
-    .product-card-large { grid-column: span 1; aspect-ratio: 4/3; }
-    .footer-grid { grid-template-columns: 1fr 1fr; }
-    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-    .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 1; }
-    .gallery-item:nth-child(5) { grid-column: span 2; }
-    .newsletter-form { flex-direction: column; }
-    .stat-row { flex-wrap: wrap; gap: 24px; }
+    .product-video-wrap { aspect-ratio: 16/9; }
+
+    /* TECHNOLOGY */
+    .tech-grid { grid-template-columns: 1fr; gap: 40px; }
+
+    /* SUSTAINABILITY */
+    .sustain-grid { grid-template-columns: 1fr; gap: 40px; }
     .sustain-badge { right: 0; bottom: -16px; }
+
+    /* GALLERY — 2 column tablet layout */
+    .gallery-grid {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto auto auto;
+      gap: 10px;
+    }
+    .gallery-item:nth-child(1) { grid-column: 1 / 3; grid-row: 1; min-height: 240px; }
+    .gallery-item:nth-child(2) { grid-column: 1; grid-row: 2; }
+    .gallery-item:nth-child(3) { grid-column: 2; grid-row: 2; }
+    .gallery-item:nth-child(4) { grid-column: 1; grid-row: 3; }
+    .gallery-item:nth-child(5) { grid-column: 1 / 3; grid-row: 4; min-height: 200px; }
+    .gallery-item:nth-child(6) { grid-column: 2; grid-row: 3; }
+
+    /* FOOTER */
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; margin-bottom: 40px; }
+    .footer-brand { grid-column: span 2; }
     .footer-bottom { flex-direction: column; gap: 14px; text-align: center; }
+
+    /* NEWSLETTER */
+    .newsletter-form { flex-direction: column; }
   }
 
-  /* ── MOBILE (≤ 600px) ── */
+  /* ═══════════════════════════════════════════
+     MOBILE  (≤ 600px)
+  ═══════════════════════════════════════════ */
   @media(max-width: 600px) {
-    /* cursor hidden on touch devices */
-    #cursor, #cursor-ring { display: none; }
-    body { cursor: auto; }
+    /* CURSOR: hidden on touch */
+    #cursor, #cursor-ring { display: none !important; }
+    body { cursor: auto !important; }
     .btn-primary, .btn-ghost, .btn-light, .tab-btn,
     .modal-close, .hamburger, .nav-cta { cursor: pointer; }
 
-    /* nav */
+    /* NAV */
     nav { padding: 0 4%; height: 64px; }
-    .nav-logo { font-size: 1.35rem; }
+    .nav-logo { font-size: 1.25rem; }
+    .nav-logo img { height: 36px !important; }
+    .mobile-menu { top: 64px; }
+    .mobile-menu a { font-size: 1.6rem; }
 
-    /* sections tighter padding */
-    section { padding: 72px 4%; }
-    #cta { padding: 72px 4%; }
-    #newsletter { padding: 60px 4%; }
-    footer { padding: 56px 4% 28px; }
+    /* SECTIONS */
+    section { padding: 60px 4%; }
+    #cta { padding: 60px 4%; }
+    #newsletter { padding: 56px 4%; }
+    footer { padding: 52px 4% 24px; }
 
-    /* hero */
-    #hero { padding-top: 64px; }
-    .hero-product-img { max-width: 100%; border-radius: 20px; }
+    /* HERO */
+    #hero { padding-top: 64px; padding-bottom: 48px; }
+    .hero-inner { gap: 24px; padding: 0 4%; }
+    .hero-tag { font-size: 0.66rem; padding: 5px 12px; }
+    .hero-h1 { font-size: clamp(1.9rem, 8.5vw, 2.8rem); line-height: 1.1; }
+    .hero-sub { font-size: 0.92rem; }
+    .hero-actions { flex-direction: column; align-items: stretch; gap: 10px; }
+    .btn-primary, .btn-ghost { width: 100%; justify-content: center; padding: 13px 20px; font-size: 0.88rem; }
+    .hero-product-img { max-width: 100%; border-radius: 18px; }
     .hero-float-card { display: none; }
-    .hero-h1 { font-size: clamp(2.2rem, 9vw, 3.2rem); }
-    .hero-sub { font-size: 0.95rem; }
-    .hero-actions { flex-direction: column; align-items: center; gap: 12px; }
-    .btn-primary, .btn-ghost { width: 100%; justify-content: center; }
+    .scroll-hint { display: none; }
 
-    /* about */
-    .about-imgs { grid-template-columns: 1fr; }
+    /* SECTION TITLES */
+    .section-title { font-size: clamp(1.75rem, 7vw, 2.4rem); }
+    .section-sub { font-size: 0.9rem; }
+
+    /* ABOUT */
+    .about-grid { gap: 28px; }
+    .about-imgs { grid-template-columns: 1fr; gap: 10px; }
     .about-img-box:first-child { grid-row: span 1; }
-    .stat-row { flex-direction: column; gap: 18px; }
+    .about-img-tall { height: 220px; }
+    .about-img-short { height: 160px; }
+    .stat-row { gap: 16px; justify-content: space-around; }
+    .stat-num { font-size: 2.2rem; }
 
-    /* features */
-    .feature-card { padding: 28px 22px; }
+    /* FEATURES: single column on phones */
+    .features-grid { grid-template-columns: 1fr; gap: 12px; margin-top: 28px; }
+    .feature-card { padding: 22px 18px; }
+    .feature-icon { width: 44px; height: 44px; font-size: 1.2rem; margin-bottom: 14px; }
+    .feature-title { font-size: 1.15rem; }
+    .feature-desc { font-size: 0.85rem; }
 
-    /* products */
-    .product-tabs { flex-wrap: wrap; gap: 6px; }
-    .tab-btn { padding: 7px 16px; font-size: 0.78rem; cursor: pointer; }
-    .product-card-large { aspect-ratio: 4/3; }
-    /* make product info always visible on mobile (no hover) */
-    .product-card-info { transform: translateY(0); opacity: 1; }
+    /* PRODUCTS */
+    .products-showcase { grid-template-columns: 1fr; gap: 16px; }
+    .product-video-wrap { aspect-ratio: 4/3; }
+    .product-card-info { transform: translateY(0) !important; opacity: 1 !important; }
 
-    /* technology */
+    /* TECHNOLOGY */
+    .tech-grid { gap: 28px; }
     .tech-ring { display: none; }
-    .tech-item { padding: 18px 16px; gap: 14px; }
+    .tech-item { padding: 16px 14px; gap: 12px; }
+    .tech-item-icon { font-size: 1.3rem; }
+    .tech-item-title { font-size: 1rem; }
+    .tech-item-desc { font-size: 0.8rem; }
 
-    /* gallery */
-    .gallery-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
-    .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 1; }
-    .gallery-item:nth-child(5) { grid-column: span 2; }
-    .gallery-item img { min-height: 140px; }
+    /* TESTIMONIALS */
+    .testi-card { width: 260px; padding: 22px 18px; }
+    .testi-quote { font-size: 1rem; }
 
-    /* testimonials */
-    .testi-card { width: 280px; padding: 24px 20px; }
-
-    /* sustainability */
-    .sustain-badge { position: static; margin-top: 20px; display: inline-block; }
+    /* SUSTAINABILITY */
+    .sustain-grid { gap: 36px; }
+    .sustain-badge {
+      position: static; margin-top: 16px;
+      display: inline-block; right: auto; bottom: auto;
+    }
     .sustain-visual { display: flex; flex-direction: column; }
+    .sustain-points { gap: 10px; }
+    .sustain-point { padding: 12px 14px; }
+    .sustain-point-title { font-size: 0.87rem; }
+    .sustain-point-desc { font-size: 0.79rem; }
 
-    /* footer */
-    .footer-grid { grid-template-columns: 1fr; gap: 32px; }
-    .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
-
-    /* newsletter */
-    .newsletter-form { flex-direction: column; }
-    .newsletter-input, .newsletter-form .btn-primary { width: 100%; justify-content: center; }
-
-    /* modal */
-    .modal-box { padding: 36px 24px; border-radius: 20px; }
-    .modal-title { font-size: 1.6rem; }
-
-    /* toast */
-    .toast { left: 16px; right: 16px; bottom: 20px; border-radius: 14px; font-size: 0.84rem; }
+    /* GALLERY: single column on phones, all items full-width */
+    .gallery-grid {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto;
+      gap: 10px;
+    }
+    .gallery-item:nth-child(1),
+    .gallery-item:nth-child(2),
+    .gallery-item:nth-child(3),
+    .gallery-item:nth-child(4),
+    .gallery-item:nth-child(5),
+    .gallery-item:nth-child(6) {
+      grid-column: 1;
+      grid-row: auto;
+      min-height: 220px;
+    }
+    .gallery-item img, .gallery-video { min-height: 220px; }
 
     /* CTA */
-    .cta-title { font-size: clamp(1.9rem, 7vw, 2.8rem); }
-    .btn-light { width: 100%; max-width: 320px; justify-content: center; cursor: pointer; }
+    .cta-title { font-size: clamp(1.75rem, 7.5vw, 2.6rem); }
+    .cta-sub { font-size: 0.9rem; }
+    .btn-light { width: 100%; justify-content: center; cursor: pointer; padding: 13px 24px; font-size: 0.88rem; }
 
-    /* section titles */
-    .section-title { font-size: clamp(1.8rem, 7vw, 2.6rem); }
+    /* NEWSLETTER */
+    .newsletter-form { flex-direction: column; gap: 10px; }
+    .newsletter-input { font-size: 16px; } /* stops iOS auto-zoom */
+    .newsletter-form .btn-primary { width: 100%; justify-content: center; }
+
+    /* FOOTER */
+    .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+    .footer-brand { grid-column: span 1; }
+    .footer-brand p { max-width: 100%; }
+    .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
+    .social-btn { width: 40px; height: 40px; }
+    .social-btn img { width: 18px; height: 18px; object-fit: contain; }
+
+    /* MODAL */
+    .modal-box {
+      padding: 28px 18px;
+      border-radius: 18px;
+      width: 96%;
+      max-height: 88svh;
+      overflow-y: auto;
+    }
+    .modal-title { font-size: 1.5rem; }
+    .modal-input { font-size: 16px; } /* stops iOS auto-zoom */
+    .modal-form .btn-primary { width: 100%; justify-content: center; }
+
+    /* TOAST */
+    .toast { left: 12px; right: 12px; bottom: 16px; border-radius: 12px; font-size: 0.82rem; justify-content: center; }
+
+    /* MARQUEE */
+    .marquee-track span { font-size: 0.82rem; padding: 0 16px; }
+
+    /* PRELOADER */
+    .pre-logo { font-size: 1.8rem; }
+  }
+
+  /* ── TOUCH: disable hover effects that need mouse ── */
+  @media(hover: none) and (pointer: coarse) {
+    body { cursor: auto !important; }
+    #cursor, #cursor-ring { display: none !important; }
+    .product-card-info { transform: translateY(0) !important; opacity: 1 !important; }
+    .gallery-overlay { opacity: 0; }
+    .about-img-overlay { opacity: 0; }
   }
 </style>
 </head>
@@ -922,15 +1089,15 @@
   <div class="container">
     <div class="about-grid">
       <div class="about-imgs reveal-left">
-        <div class="about-img-box" style="height:380px">
+        <div class="about-img-box about-img-tall">
           <img src="./images/2.jpeg" alt="Mountain Water" />
           <div class="about-img-overlay"></div>
         </div>
-        <div class="about-img-box" style="height:180px">
+        <div class="about-img-box about-img-short">
           <img src="./images/3.jpeg" alt="Clean water" />
           <div class="about-img-overlay"></div>
         </div>
-        <div class="about-img-box" style="height:180px">
+        <div class="about-img-box about-img-short">
           <img src="./images/4.jpeg" alt="Bottle design" />
           <div class="about-img-overlay"></div>
         </div>
@@ -1020,8 +1187,8 @@
       </div>
     </div>
     <div class="products-showcase stagger">
-      <!-- <div class="product-card" data-cat="classic"> -->
-        <video src="./images/1.mp4"  height="400px"  width="1125px" autoplay loop />
+      <div class="product-video-wrap">
+        <video src="./images/1.mp4" autoplay loop muted playsinline preload="auto" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:20px;"></video>
         <div class="product-card-tag">Best Seller</div>
         <div class="product-card-info">
           <div class="product-card-name">The Carry — Food Containers</div>
@@ -1257,11 +1424,11 @@
     </div>
     <div class="gallery-grid">
       <div class="gallery-item">
-        <video src="./images/2.mp4" height="500px" autoplay autoplay loop alt="video" />
+        <video class="gallery-video" src="./images/2.mp4" autoplay loop muted playsinline preload="auto"></video>
         <div class="gallery-overlay"><span>✨</span></div>
       </div>
       <div class="gallery-item">
-        <img src="./images/m1.jpeg" height="1000px" width="100px" alt="City" />
+        <img src="./images/m1.jpeg" alt="City" />
         <div class="gallery-overlay"><span>✨</span></div>
       </div>
       <div class="gallery-item">
@@ -1273,7 +1440,7 @@
         <div class="gallery-overlay"><span>✨</span></div>
       </div>
       <div class="gallery-item">
-        <video src="./images/3.mp4" height="350px" autoplay autoplay loop alt="City" />
+        <video class="gallery-video" src="./images/3.mp4" autoplay loop muted playsinline preload="auto"></video>
         <div class="gallery-overlay"><span>✨</span></div>
       </div>
       <div class="gallery-item">
@@ -1534,5 +1701,28 @@
 </script>
 
 
+
+<script>
+  // ── VIDEO AUTOPLAY RETRY for mobile browsers ──
+  document.querySelectorAll('video').forEach(function(v) {
+    v.setAttribute('muted', '');
+    v.setAttribute('playsinline', '');
+    v.muted = true;
+    var tryPlay = function() {
+      var p = v.play();
+      if (p !== undefined) {
+        p.catch(function() {
+          // Retry on first user interaction
+          document.addEventListener('touchstart', function retry() {
+            v.play();
+            document.removeEventListener('touchstart', retry);
+          }, { once: true });
+        });
+      }
+    };
+    if (document.readyState === 'complete') { tryPlay(); }
+    else { window.addEventListener('load', tryPlay); }
+  });
+</script>
 </body>
 </html>
