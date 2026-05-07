@@ -3,23 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aquafold</title>
-  <meta name="description" content="Aquafold sustainable packaging platform combining molded fiber, scalable manufacturing, product roadmap, and partnership opportunities." />
+  <title>Features — Aquafold</title>
+  <meta name="description" content="Explore Aquafold packaging features: molded fiber structure, leak resistance, compostable design, and scalable manufacturing." />
 
   <style>
     :root {
-      --bg:#f7fbf8;
+      --bg:#f6faf7;
       --surface:#ffffff;
       --surface-2:#eef7f0;
-      --text:#122018;
-      --muted:#4f6657;
-      --line:#dbe8df;
+      --text:#132219;
+      --muted:#50685a;
+      --line:#d9e6de;
       --green:#1f7a3a;
       --green-dark:#165a2b;
       --blue:#0b5a88;
-      --radius:18px;
-      --shadow:0 12px 36px rgba(10,40,24,.08);
-      --max:1160px;
+      --radius:22px;
+      --shadow:0 18px 40px rgba(12,40,24,.08);
+      --max:1180px;
+      --dark-1:#001f1d;
+      --dark-2:#002c36;
+      --dark-3:#001926;
     }
 
     * {
@@ -28,12 +31,16 @@
       box-sizing:border-box;
     }
 
+    html {
+      scroll-behavior:smooth;
+    }
+
     body {
-      overflow-x:hidden;
       background:var(--bg);
       color:var(--text);
       font-family:Inter,ui-sans-serif,system-ui,sans-serif;
-      line-height:1.65;
+      line-height:1.7;
+      overflow-x:hidden;
     }
 
     a {
@@ -41,77 +48,71 @@
       color:inherit;
     }
 
-
-    a.btn.btn-primary{
-      color: white;
-      background-color: #014226;
-    }
-
-    a.btn.btn-secondary{
-      color: white;
-      background-color: #014226
+    img {
+      width:100%;
+      display:block;
     }
 
     .container {
-      width:min(var(--max), calc(100% - 32px));
+      width:min(var(--max), calc(100% - 36px));
       margin:0 auto;
     }
 
     .nav {
       position:sticky;
       top:0;
-      z-index:100;
-      background:linear-gradient(135deg,#001f1d,#002c36 55%,#001926);
+      z-index:999;
+      background:linear-gradient(135deg,var(--dark-1),var(--dark-2) 55%,var(--dark-3));
       backdrop-filter:blur(18px);
       border-bottom:1px solid rgba(255,255,255,.08);
-      transition:all .35s ease;
-      box-shadow:0 10px 40px rgba(0,0,0,.18);
+      box-shadow:0 12px 36px rgba(0,0,0,.18);
     }
 
     .nav-inner {
-      min-height:72px;
+      min-height:76px;
       display:flex;
-      justify-content:space-between;
       align-items:center;
-      gap:16px;
+      justify-content:space-between;
+      gap:20px;
     }
 
     .brand {
+      color:#fff;
       font-weight:800;
-      letter-spacing:.08em;
-      color:#ffffff;
+      letter-spacing:.12em;
+      font-size:1rem;
     }
 
     .nav-links {
       display:flex;
-      gap:20px;
-      flex-wrap:wrap;
       align-items:center;
+      gap:22px;
+      flex-wrap:wrap;
     }
 
     .nav-links a {
-      color:rgba(231,245,239,.72);
+      color:rgba(255,255,255,.72);
       font-size:.95rem;
       transition:.25s ease;
     }
 
-    .nav-links a:hover {
-      color:#ffffff;
+    .nav-links a:hover,
+    .nav-links a.active {
+      color:#fff;
       transform:translateY(-1px);
     }
 
     .btn {
-      position:relative;
-      overflow:hidden;
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      min-height:46px;
-      padding:0 20px;
+      min-height:48px;
+      padding:0 22px;
       border-radius:999px;
       font-weight:700;
-      border:1px solid transparent;
-      transition:.2s ease;
+      transition:.3s ease;
+      position:relative;
+      overflow:hidden;
     }
 
     .btn-primary {
@@ -122,37 +123,52 @@
     }
 
     .btn-primary:hover {
-      background:var(--green-dark);
       transform:translateY(-2px);
-      box-shadow:0 12px 30px rgba(31,122,58,.25);
+      background:rgba(255,255,255,.16);
+      box-shadow:0 14px 32px rgba(0,0,0,.18);
     }
 
     .btn-secondary {
-      background:transparent;
-      border-color:rgba(255,255,255,.12);
-      color:#e7f5ef;
+      border:1px solid var(--line);
+      color:var(--text);
+      background:#fff;
     }
 
     .btn-secondary:hover {
-      border-color:rgba(255,255,255,.24);
-      color:#fff;
-      background:rgba(255,255,255,.05);
+      transform:translateY(-2px);
+      border-color:var(--green);
+      color:var(--green-dark);
     }
 
     section {
-      padding:72px 0;
+      padding:88px 0;
+      position:relative;
     }
 
     .hero {
-      padding:84px 0 56px;
+      padding:110px 0 80px;
+      overflow:hidden;
+    }
+
+    .hero::before {
+      content:"";
+      position:absolute;
+      right:-120px;
+      top:-80px;
+      width:520px;
+      height:520px;
+      border-radius:50%;
+      background:radial-gradient(circle,rgba(31,122,58,.09),transparent 72%);
+      pointer-events:none;
     }
 
     .hero-grid,
-    .grid-2,
-    .grid-3,
-    .gallery-grid {
+    .feature-grid,
+    .alt-grid,
+    .gallery-grid,
+    .dual-grid {
       display:grid;
-      gap:28px;
+      gap:32px;
       align-items:center;
     }
 
@@ -160,98 +176,129 @@
       grid-template-columns:1.1fr .9fr;
     }
 
-    .grid-2 {
+    .feature-grid,
+    .alt-grid,
+    .dual-grid {
       grid-template-columns:1fr 1fr;
     }
 
-    .grid-3 {
-      grid-template-columns:repeat(3,1fr);
-    }
-
     .gallery-grid {
-      grid-template-columns:repeat(4,1fr);
+      grid-template-columns:repeat(3,1fr);
     }
 
     .eyebrow {
       display:inline-flex;
-      padding:6px 12px;
+      align-items:center;
+      padding:8px 14px;
       border-radius:999px;
       background:var(--surface-2);
       color:var(--green-dark);
       font-size:.78rem;
+      letter-spacing:.1em;
       font-weight:700;
-      letter-spacing:.08em;
       text-transform:uppercase;
-      margin-bottom:18px;
+      margin-bottom:20px;
     }
 
     h1,h2,h3 {
-      line-height:1.15;
-      margin-bottom:16px;
+      line-height:1.1;
+      margin-bottom:18px;
     }
 
     h1 {
-      font-size:clamp(2.8rem,5vw,5rem);
-      max-width:10ch;
+      font-size:clamp(3rem,5vw,5.4rem);
+      max-width:11ch;
     }
 
     h2 {
-      font-size:clamp(1.9rem,3vw,2.7rem);
+      font-size:clamp(2rem,3vw,2.8rem);
     }
 
     h3 {
-      font-size:1.18rem;
+      font-size:1.22rem;
     }
 
     p {
       color:var(--muted);
-      margin-bottom:14px;
-    }
-
-    .card,
-    .image-box,
-    .highlight {
-      transition:all .35s ease;
-      background:var(--surface);
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-    }
-
-    .card,
-    .highlight {
-      padding:24px;
-    }
-
-    .image-box {
-      min-height:300px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      padding:20px;
-      background:linear-gradient(160deg,#eff7f1,#fff 60%,#eef5fb);
-      color:var(--muted);
-    }
-
-    .image-box.tall {
-      min-height:420px;
-    }
-
-    .image-box.small {
-      min-height:220px;
+      margin-bottom:16px;
     }
 
     .section-head {
       max-width:760px;
-      margin-bottom:28px;
+      margin-bottom:34px;
+    }
+
+    .card,
+    .highlight,
+    .image-box {
+      background:var(--surface);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      transition:.35s ease;
+    }
+
+    .card,
+    .highlight {
+      padding:28px;
+    }
+
+    .card:hover,
+    .highlight:hover,
+    .image-box:hover {
+      transform:translateY(-8px);
+      box-shadow:0 28px 60px rgba(10,40,24,.12);
+    }
+
+    .image-box {
+      min-height:320px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:24px;
+      color:var(--muted);
+      background:linear-gradient(145deg,#f1f8f3,#ffffff 60%,#edf6fb);
+      overflow:hidden;
+      position:relative;
+    }
+
+    .image-box::before {
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(120deg,transparent,rgba(255,255,255,.45),transparent);
+      transform:translateX(-120%);
+      transition:1.2s ease;
+    }
+
+    .image-box:hover::before {
+      transform:translateX(120%);
+    }
+
+    .image-box.tall {
+      min-height:450px;
+    }
+
+    .image-box.small {
+      min-height:230px;
+    }
+
+    .bullet-list {
+      padding-left:18px;
+      color:var(--muted);
+      margin-top:14px;
+    }
+
+    .bullet-list li {
+      margin-bottom:10px;
     }
 
     .cta-row {
       display:flex;
       gap:12px;
       flex-wrap:wrap;
-      margin-top:22px;
+      margin-top:26px;
     }
 
     .highlight {
@@ -259,41 +306,56 @@
     }
 
     .footer {
-      margin-top:48px;
+      margin-top:60px;
+      background:linear-gradient(135deg,var(--dark-1),var(--dark-2) 55%,var(--dark-3));
       border-top:1px solid rgba(255,255,255,.08);
-      background:linear-gradient(135deg,#001f1d,#002c36 55%,#001926);
       color:#e7f5ef;
-      position:relative;
       overflow:hidden;
-    }
-
-    .footer-inner {
       position:relative;
-      z-index:2;
-      padding:28px 0 42px;
-      display:flex;
-      justify-content:space-between;
-      gap:20px;
-      flex-wrap:wrap;
-    }
-
-    .footer small {
-      color:rgba(231,245,239,.68);
     }
 
     .footer-grid {
       display:grid;
       grid-template-columns:1.4fr 1fr 1fr 1fr;
       gap:48px;
-      padding:72px 0 52px;
+      padding:80px 0 56px;
+    }
+
+    .footer-brand p {
+      color:rgba(231,245,239,.72);
+      max-width:300px;
+    }
+
+    .footer-social {
+      display:flex;
+      gap:12px;
+      margin-top:28px;
+    }
+
+    .social-circle {
+      width:48px;
+      height:48px;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+      color:#fff;
+      transition:.3s ease;
+    }
+
+    .social-circle:hover {
+      transform:translateY(-4px);
+      background:rgba(255,255,255,.12);
     }
 
     .footer-col h4 {
+      color:#fff;
       font-size:.95rem;
       letter-spacing:.08em;
+      margin-bottom:22px;
       text-transform:uppercase;
-      margin-bottom:20px;
-      color:#ffffff;
     }
 
     .footer-col a {
@@ -308,88 +370,18 @@
       transform:translateX(4px);
     }
 
-    .footer-brand p {
-      color:rgba(231,245,239,.72);
-      max-width:280px;
-    }
-
-    .footer-social {
-      display:flex;
-      gap:12px;
-      margin-top:26px;
-    }
-
-    .social-circle {
-      width:48px;
-      height:48px;
-      border-radius:50%;
-      border:1px solid rgba(255,255,255,.15);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      color:#fff;
-      transition:.3s ease;
-      background:rgba(255,255,255,.05);
-    }
-
-    .social-circle:hover {
-      transform:translateY(-4px);
-      background:rgba(255,255,255,.12);
-    }
-
     .footer-bottom {
       border-top:1px solid rgba(255,255,255,.08);
-      padding:28px 0 36px;
+      padding:30px 0 36px;
       display:flex;
       justify-content:space-between;
       gap:20px;
       flex-wrap:wrap;
-      color:rgba(231,245,239,.65);
+      color:rgba(231,245,239,.64);
       font-size:.92rem;
     }
 
-    .card:hover,
-    .image-box:hover,
-    .highlight:hover {
-      transform:translateY(-8px);
-      box-shadow:0 24px 50px rgba(10,40,24,.12);
-    }
-
-    .image-box {
-      position:relative;
-      overflow:hidden;
-    }
-
-    .image-box::before {
-      content:"";
-      position:absolute;
-      inset:0;
-      background:linear-gradient(120deg,transparent,rgba(255,255,255,.4),transparent);
-      transform:translateX(-120%);
-      transition:1.2s ease;
-    }
-
-    .image-box:hover::before {
-      transform:translateX(120%);
-    }
-
-    .hero {
-      position:relative;
-    }
-
-    .hero::before {
-      content:"";
-      position:absolute;
-      top:-100px;
-      right:-120px;
-      width:420px;
-      height:420px;
-      background:radial-gradient(circle,rgba(31,122,58,.08),transparent 70%);
-      border-radius:50%;
-      pointer-events:none;
-    }
-
-    /* ── Hamburger button (hidden on desktop) ── */
+    /* ── Hamburger button ── */
     .nav-toggle {
       display:none;
       flex-direction:column;
@@ -418,10 +410,11 @@
     .nav-toggle.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
 
     /* ── Tablet ── */
-    @media (max-width:960px) {
+    @media (max-width:980px) {
       .hero-grid,
-      .grid-2,
-      .grid-3,
+      .feature-grid,
+      .alt-grid,
+      .dual-grid,
       .gallery-grid {
         grid-template-columns:1fr 1fr;
       }
@@ -429,7 +422,7 @@
       .footer-grid {
         grid-template-columns:1fr 1fr;
         gap:32px;
-        padding:48px 0 36px;
+        padding:52px 0 36px;
       }
     }
 
@@ -477,15 +470,17 @@
 
       /* Grids → single column */
       .hero-grid,
-      .grid-2,
-      .grid-3,
-      .gallery-grid {
+      .feature-grid,
+      .alt-grid,
+      .dual-grid,
+      .gallery-grid,
+      .footer-grid {
         grid-template-columns:1fr;
       }
 
       /* Hero */
       .hero {
-        padding:48px 0 36px;
+        padding:52px 0 40px;
       }
 
       h1 {
@@ -497,25 +492,29 @@
         font-size:clamp(1.4rem,5vw,1.9rem);
       }
 
-      /* Images & videos: always fill width, never overflow */
+      /* Images & videos always fill width */
       .image-box {
         min-height:200px;
       }
 
       .image-box.tall {
-        min-height:260px;
+        min-height:240px;
+      }
+
+      .image-box.small {
+        min-height:180px;
       }
 
       .image-box img,
       .image-box video {
-        max-width:100%;
+        max-width:100% !important;
         width:100% !important;
         height:auto !important;
       }
 
       /* Sections */
       section {
-        padding:48px 0;
+        padding:52px 0;
       }
 
       /* CTA row */
@@ -533,7 +532,11 @@
       .footer-grid {
         grid-template-columns:1fr;
         gap:28px;
-        padding:40px 0 28px;
+        padding:40px 0 24px;
+      }
+
+      .footer-brand p {
+        max-width:100%;
       }
 
       .footer-bottom {
@@ -542,17 +545,11 @@
         text-align:center;
         padding:20px 0 28px;
       }
-
-      .footer-brand p {
-        max-width:100%;
-      }
     }
 
     /* ── Small mobile ── */
     @media (max-width:400px) {
-      h1 {
-        font-size:1.9rem;
-      }
+      h1 { font-size:1.85rem; }
 
       .btn {
         font-size:.88rem;
@@ -560,6 +557,21 @@
         min-height:44px;
       }
     }
+
+    a.btn.btn-primary{
+      color: white;
+      background-color: #014226;
+    }
+
+    a.btn.btn-secondary{
+      color: white;
+      background-color: #014226
+    }
+
+
+
+
+
   </style>
 </head>
 <body>
@@ -567,7 +579,7 @@
 <header class="nav">
   <div class="container nav-inner">
     <a href="index.html" class="brand">
-      <img src="/images/aquafoldlogo.png" alt="photo" width="150">
+      <img src="/images/aquafoldlogo.png" alt="logo" height="31">
     </a>
 
     <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
@@ -575,7 +587,7 @@
     </button>
 
     <nav class="nav-links" id="navLinks">
-      <a href="features.html">Features</a>
+      <a href="features.html" class="active">Features</a>
       <a href="products.html">Products</a>
       <a href="technology.html">Technology</a>
       <a href="work-with-us.html">Work With Us</a>
@@ -590,69 +602,23 @@
     <div class="container hero-grid">
 
       <div>
-        <span class="eyebrow">Aquafold Platform</span>
-        <h1>Packaging built around performance, scalability, and material transition.</h1>
+        <span class="eyebrow">Features</span>
+        <h1>Packaging engineered for real-world performance.</h1>
 
         <p>
-          Aquafold develops molded fiber packaging designed for food delivery,
-          hospitality, Q-commerce, and future liquid packaging categories.
-          The platform combines plant-based structure, barrier development,
-          and manufacturing realism.
+          Aquafold packaging is designed around the operational realities of delivery,
+          food service, and high-volume handling. Each material decision is driven by
+          performance, scalability, and environmental direction.
         </p>
 
         <div class="cta-row">
-          <a href="products.html" class="btn btn-primary">Explore Products</a>
-          <a href="technology.html" class="btn btn-secondary">See Technology</a>
+          <a href="technology.html" class="btn btn-primary">See Technology</a>
+          <a href="products.html" class="btn btn-secondary">Explore Products</a>
         </div>
       </div>
 
-      <div class="image-box tall">
-        <img src="images/1.png" alt="product" height="510">
-      </div>
-
-    </div>
-  </section>
-
-  <section>
-    <div class="container">
-
-      <div class="section-head">
-        <span class="eyebrow">Core Features</span>
-        <h2>Material, barrier performance, and manufacturing alignment.</h2>
-      </div>
-
-      <div class="grid-3">
-
-        <div class="card">
-          <h3>Plant-Based Structure</h3>
-          <p>Packaging built using agricultural fiber such as bagasse.</p>
-        </div>
-
-        <div class="card">
-          <h3>Leak Resistance Direction</h3>
-          <p>Designed to support oils, sauces, and moisture-heavy applications.</p>
-        </div>
-
-        <div class="card">
-          <h3>Scalable Manufacturing</h3>
-          <p>Aligned with pulp molding infrastructure and commercial production workflows.</p>
-        </div>
-
-      </div>
-
-      <div class="gallery-grid" style="margin-top:28px;">
-        <div class="image-box small">
-          <img src="/images/2.jpeg" alt="product" width="300">
-        </div>
-        <div class="image-box small">
-          <img src="/images/3.jpeg" alt="product" width="300">
-        </div>
-        <div class="image-box small">
-          <img src="/images/4.jpeg" alt="product" width="300">
-        </div>
-        <div class="image-box small">
-          <img src="/images/6th image.png" alt="product" height="170" width="400">
-        </div>
+      <div class="image-box product">
+        <img src="/images/m5.png" alt="product" height="650" width="650">
       </div>
 
     </div>
@@ -660,147 +626,161 @@
 
   <section>
     <div class="container">
-
       <div class="section-head">
-        <span class="eyebrow">Product Roadmap</span>
-        <h2>Near-term execution paired with long-term expansion.</h2>
+        <span class="eyebrow">Material System</span>
+        <h2>Made from agricultural fiber instead of fossil-based plastic.</h2>
       </div>
 
-      <div class="grid-3">
-
-        <div class="card">
-          <h3>Tableware</h3>
-          <p>Plates, trays, bowls, and food-service packaging categories.</p>
-        </div>
-
-        <div class="card">
-          <h3>Cutlery</h3>
-          <p>Disposable molded fiber cutlery aligned with scale and sustainability.</p>
-        </div>
-
-        <div class="card">
-          <h3>Molded Fiber Bottle</h3>
-          <p>Long-term flagship packaging category under development.</p>
-        </div>
-
-      </div>
-
-      <div class="grid-2" style="margin-top:28px;">
-        <div class="image-box tall">
-            <video src="/images/1.mp4" width="565" autoplay loop></video> 
-        </div>
-
-        <div class="image-box tall">
-          <video src="/images/2.mp4" width="565" autoplay loop></video>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <section>
-    <div class="container">
-
-      <div class="section-head">
-        <span class="eyebrow">Technology</span>
-        <h2>Two-layer packaging engineering system.</h2>
-      </div>
-
-      <div class="grid-2">
-
+      <div class="feature-grid">
         <div>
           <div class="card">
-            <h3>Outer Structural Layer</h3>
-            <p>Molded fiber creates rigidity, shape, and mechanical support.</p>
-          </div>
+            <h3>Plant-Based Material Composition</h3>
+            <p>
+              Aquafold packaging begins with bagasse and molded fiber substrates that
+              provide structure, durability, and renewable sourcing potential.
+            </p>
 
-          <div class="card" style="margin-top:18px;">
-            <h3>Inner Barrier Direction</h3>
-            <p>Bio-based coating direction improves moisture resistance.</p>
+            <ul class="bullet-list">
+              <li>Uses agricultural byproduct feedstock</li>
+              <li>No virgin plastic structure required</li>
+              <li>Supports circular manufacturing direction</li>
+              <li>Compatible with scalable molding workflows</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="image-box">
+          <img src="/images/5.jpeg" alt="product" height="400">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="alt-grid">
+
+        <div class="image-box small">
+          <img src="/images/4th image.png" alt="product" width="300" height="300">
+        </div>
+
+        <div>
+          <span class="eyebrow">Leak Resistance</span>
+          <h2>Built to survive delivery conditions and liquid-heavy food applications.</h2>
+
+          <p>
+            Food delivery environments create stress through moisture, stacking,
+            transport vibration, and holding time. Aquafold is designed to address
+            these operational conditions.
+          </p>
+
+          <div class="card">
+            <h3>Performance-Oriented Barrier Direction</h3>
+            <p>
+              Bio-based barrier coating direction improves resistance against oils,
+              gravies, sauces, and liquid exposure.
+            </p>
+
+            <ul class="bullet-list">
+              <li>Improved moisture handling</li>
+              <li>Reduced seepage risk</li>
+              <li>Designed for real delivery cycles</li>
+              <li>Supports stacked transport</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Gallery Space</span>
+        <h2>Dedicated visual zones for product, manufacturing, and material storytelling.</h2>
+      </div>
+
+      <div class="gallery-grid">
+        <div class="image-box small">
+          <img src="/images/1st image.png" alt="product" width="400" height="180">
+        </div>
+        <div class="image-box small">
+          <img src="/images/2nd image.png" alt="product" width="400" height="180">
+        </div>
+        <div class="image-box small">
+          <img src="/images/17th image..png" alt="product" width="400" height="180">
+        </div>
+        <!-- <div class="image-box small">IMAGE SLOT 6</div>
+        <div class="image-box small">IMAGE SLOT 7</div>
+        <div class="image-box small">IMAGE SLOT 8</div> -->
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="feature-grid">
+
+        <div>
+          <span class="eyebrow">Compostable Direction</span>
+          <h2>Built to exit the waste stream differently.</h2>
+
+          <p>
+            Packaging is designed with end-of-life intent in mind, prioritizing materials
+            that biodegrade under composting conditions rather than persisting for decades.
+          </p>
+
+          <div class="card">
+            <h3>Environmental Design Philosophy</h3>
+            <p>
+              Functional lifespan should be measured in hours while waste persistence
+              should be minimized wherever possible.
+            </p>
           </div>
         </div>
 
         <div class="image-box tall">
-          <video src="/images/3.mp4" width="565" autoplay loop></video>
+          <img src="/images/13th image.png" alt="product" height="400">
         </div>
 
       </div>
-
-      <div class="gallery-grid" style="margin-top:28px;">
-        <div class="image-box small">
-          <img src="/images/m1.jpeg" alt="product" width="300">
-        </div>
-        <div class="image-box small">
-          <img src="/images/m2.jpeg" alt="product" width="500" height="200">
-        </div>
-        <div class="image-box small">
-          <img src="/images/m3.jpeg" alt="product" width="300">
-        </div>
-        <div class="image-box small">
-          <img src="/images/m4.jpeg" alt="product" width="300">
-        </div>
-      </div>
-
     </div>
   </section>
 
   <section>
     <div class="container">
 
-      <div class="section-head">
-        <span class="eyebrow">Work With Us</span>
-        <h2>Multiple pathways to collaborate with Aquafold.</h2>
-      </div>
+      <div class="dual-grid">
 
-      <div class="grid-3">
-
-        <div class="card">
-          <h3>Investors</h3>
-          <p>Funding conversations focused on scalable sustainable packaging.</p>
-        </div>
-
-        <div class="card">
-          <h3>B2B Partnerships</h3>
-          <p>Pilot programs and product validation for packaging deployment.</p>
-        </div>
-
-        <div class="card">
-          <h3>Suppliers & Talent</h3>
-          <p>Manufacturing, tooling, coatings, engineering, and collaboration.</p>
-        </div>
-
-      </div>
-
-      <!-- <div class="grid-2" style="margin-top:28px;">
-        <div class="image-box">
-          
-        </div>
-
-        <div class="image-box">
-          IMAGE SLOT 13
+        <!-- <div class="image-box">
+          IMAGE SLOT 10
           <br><br>
-          Suggested: Factory collaboration or supplier ecosystem.
+          Suggested: Manufacturing equipment.
         </div>
-      </div> -->
 
-    </div>
-  </section>
+        <div class="image-box">
+          IMAGE SLOT 11
+          <br><br>
+          Suggested: Packaging stack or warehouse storage.
+        </div> -->
 
-  <section>
-    <div class="container">
+      </div>
 
-      <div class="highlight">
-        <span class="eyebrow">Platform Summary</span>
-        <h2>A unified packaging system across material, technology, products, and partnerships.</h2>
+      <div style="margin-top:32px;">
+        <div class="highlight">
+          <span class="eyebrow">Manufacturing</span>
+          <h2>Designed with scalability in mind.</h2>
 
-        <p>
-          Aquafold brings together molded fiber structure, scalable manufacturing,
-          product commercialization, and ecosystem collaboration.
-        </p>
+          <p>
+            Sustainable packaging only matters when it can be manufactured consistently,
+            efficiently, and at realistic commercial volumes.
+          </p>
 
-        <div class="cta-row">
-          <a href="work-with-us.html#investors" class="btn btn-primary">Investor Inquiry</a>
-          <a href="work-with-us.html#partners" class="btn btn-secondary">Partnership Discussion</a>
+          <div class="cta-row">
+            <a href="technology.html" class="btn btn-primary">Explore Technology</a>
+            <a href="work-with-us.html#partnerships" class="btn btn-secondary">Discuss Partnership</a>
+          </div>
         </div>
       </div>
 
@@ -875,7 +855,6 @@
 
   </div>
 </footer>
-
 <script>
   const toggle = document.getElementById('navToggle');
   const navLinks = document.getElementById('navLinks');
@@ -884,7 +863,6 @@
     toggle.classList.toggle('open', isOpen);
     toggle.setAttribute('aria-expanded', isOpen);
   });
-  // Close menu when a link is tapped
   navLinks.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
       navLinks.classList.remove('open');
