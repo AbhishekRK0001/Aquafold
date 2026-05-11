@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aquafold</title>
   <meta name="description" content="Aquafold sustainable packaging platform combining molded fiber, scalable manufacturing, product roadmap, and partnership opportunities." />
+  <link rel="icon" type="image/png" href="/images/globe.png" />
 
   <style>
     :root {
@@ -560,14 +561,197 @@
         min-height:44px;
       }
     }
+
+    /* ── Global mobile overflow fix ── */
+    @media (max-width:720px) {
+      html, body {
+        overflow-x: hidden;
+        max-width: 100vw;
+      }
+
+      .container {
+        width: calc(100% - 28px);
+        overflow-x: hidden;
+      }
+
+      /* Force all images & videos inside any element to be responsive */
+      img, video {
+        max-width: 100% !important;
+        width: auto !important;
+        height: auto !important;
+      }
+
+      /* Image boxes: full width, no horizontal overflow */
+      .image-box {
+        width: 100%;
+        min-height: 220px;
+        padding: 12px;
+      }
+
+      .image-box img,
+      .image-box video {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+        object-fit: contain;
+      }
+
+      /* Hero image box specifically */
+      .hero-grid .image-box.tall {
+        min-height: 240px;
+      }
+
+      /* Section padding tighter */
+      section {
+        padding: 44px 0;
+      }
+
+      /* Gallery: 2 columns on mobile instead of 4 */
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr !important;
+      }
+
+      /* Prevent hero decorative circle from causing overflow */
+      .hero::before {
+        display: none;
+      }
+    }
+
+    /* ══════════════════════════════════════════
+       PRELOADER
+    ══════════════════════════════════════════ */
+    #preloader {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: linear-gradient(135deg, #001f1d, #002c36 55%, #001926);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+
+    #preloader.hide {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    /* Logo wrapper — starts invisible, slides up */
+    .pl-logo {
+      opacity: 0;
+      transform: translateY(40px) scale(0.85);
+      animation: plLogoIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.2s forwards;
+    }
+
+    .pl-logo img {
+      width: min(320px, 72vw);
+      height: auto;
+      filter: drop-shadow(0 0 32px rgba(14,110,253,.35));
+    }
+
+    @keyframes plLogoIn {
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    /* Tagline */
+    .pl-tagline {
+      color: rgba(231,245,239,0.6);
+      font-family: Inter, ui-sans-serif, sans-serif;
+      font-size: 0.82rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      opacity: 0;
+      animation: plFadeIn 0.6s ease 0.9s forwards;
+    }
+
+    @keyframes plFadeIn {
+      to { opacity: 1; }
+    }
+
+    /* Progress bar */
+    .pl-bar-wrap {
+      width: min(280px, 60vw);
+      height: 3px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 99px;
+      overflow: hidden;
+      opacity: 0;
+      animation: plFadeIn 0.4s ease 1s forwards;
+    }
+
+    .pl-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #1f7a3a, #0b5a88);
+      border-radius: 99px;
+      animation: plProgress 1.6s cubic-bezier(0.4, 0, 0.2, 1) 1.1s forwards;
+    }
+
+    @keyframes plProgress {
+      0%   { width: 0%; }
+      60%  { width: 75%; }
+      100% { width: 100%; }
+    }
+
+    /* Ripple pulse rings around logo */
+    .pl-rings {
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      pointer-events: none;
+    }
+
+    .pl-ring {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 1.5px solid rgba(31,122,58,0.4);
+      animation: plRing 2.4s ease-out infinite;
+    }
+
+    .pl-ring:nth-child(2) { animation-delay: 0.8s; }
+    .pl-ring:nth-child(3) { animation-delay: 1.6s; }
+
+    @keyframes plRing {
+      0%   { transform: scale(0.6); opacity: 0.7; }
+      100% { transform: scale(2.2); opacity: 0; }
+    }
+
+    /* Keep page hidden until preloader exits */
+    body.loading > *:not(#preloader) {
+      visibility: hidden;
+    }
   </style>
 </head>
-<body>
+<body class="loading">
+
+<!-- ══ PRELOADER ══ -->
+<div id="preloader">
+  <div class="pl-rings">
+    <div class="pl-ring"></div>
+    <div class="pl-ring"></div>
+    <div class="pl-ring"></div>
+  </div>
+  <div class="pl-logo">
+    <img src="/images/aquafoldlogo.png" alt="Aquafold" />
+  </div>
+  <!-- <div class="pl-tagline">Purity, Beautifully Engineered</div> -->
+  <div class="pl-bar-wrap">
+    <div class="pl-bar"></div>
+  </div>
+</div>
 
 <header class="nav">
   <div class="container nav-inner">
-    <a href="index.html" class="brand">
-      <img src="/images/aquafoldlogo.png" alt="photo" width="150">
+    <a href="index.html" class="brand" style="display:flex;align-items:center;gap:6px;">
+      <!-- <img src="/images/globe.png" alt="globe" height="34" style="flex-shrink:0;"> -->
+      <img src="/images/aquafoldlogo.png" alt="Aquafold" width="130" style="flex-shrink:0;">
     </a>
 
     <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
@@ -687,11 +871,11 @@
 
       <div class="grid-2" style="margin-top:28px;">
         <div class="image-box tall">
-            <video src="/images/1.mp4" width="565" autoplay loop></video> 
+            <video src="/images/1.mp4" width="565" autoplay loop muted playsinline></video> 
         </div>
 
         <div class="image-box tall">
-          <video src="/images/2.mp4" width="565" autoplay loop></video>
+          <video src="/images/2.mp4" width="565" autoplay loop muted playsinline></video>
         </div>
       </div>
 
@@ -721,7 +905,7 @@
         </div>
 
         <div class="image-box tall">
-          <video src="/images/3.mp4" width="565" autoplay loop></video>
+          <video src="/images/3.mp4" width="565" autoplay loop muted playsinline></video>
         </div>
 
       </div>
@@ -892,6 +1076,29 @@
       toggle.setAttribute('aria-expanded', false);
     });
   });
+</script>
+
+<script>
+  /* ── Preloader ── */
+  (function () {
+    const pl = document.getElementById('preloader');
+
+    function dismiss() {
+      pl.classList.add('hide');
+      document.body.classList.remove('loading');
+    }
+
+    // After progress bar finishes (~2.8s) + small buffer, hide preloader
+    window.addEventListener('load', function () {
+      // minimum display time: 2800ms so the animation plays fully
+      const elapsed = performance.now();
+      const remaining = Math.max(0, 2800 - elapsed);
+      setTimeout(dismiss, remaining);
+    });
+
+    // Safety fallback — never block more than 4s
+    setTimeout(dismiss, 4000);
+  })();
 </script>
 </body>
 </html>
