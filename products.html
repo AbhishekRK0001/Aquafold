@@ -48,7 +48,7 @@
       position:sticky;
       top:0;
       z-index:999;
-      background:linear-gradient(135deg,var(--dark-1),var(--dark-2) 55%,var(--dark-3));
+      background:#0B1F33;
       backdrop-filter:blur(18px);
       border-bottom:1px solid rgba(255,255,255,.08);
       box-shadow:0 12px 36px rgba(0,0,0,.18);
@@ -236,7 +236,7 @@
 
     .footer{
       margin-top:60px;
-      background:linear-gradient(135deg,var(--dark-1),var(--dark-2) 55%,var(--dark-3));
+      background:#0B1F33;
       border-top:1px solid rgba(255,255,255,.08);
       color:#e7f5ef;
     }
@@ -522,7 +522,7 @@
       position: fixed;
       inset: 0;
       z-index: 9999;
-      background: linear-gradient(135deg, #001f1d, #002c36 55%, #001926);
+      background: white;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -617,17 +617,28 @@
     body.loading > *:not(#preloader) {
       visibility: hidden;
     }
+      /* ── Mobile logo size fixes ── */
+    @media (max-width:720px) {
+      .brand img, .nav-inner .brand img {
+        width: 90px !important;
+        height: auto !important;
+      }
+      .footer-brand .brand img, .footer-brand a img {
+        width: 140px !important;
+        height: auto !important;
+      }
+    }
   </style>
 </head>
 <body class="loading">
 
 <!-- ══ PRELOADER ══ -->
 <div id="preloader">
-  <div class="pl-rings">
+  <!-- <div class="pl-rings">
     <div class="pl-ring"></div>
     <div class="pl-ring"></div>
     <div class="pl-ring"></div>
-  </div>
+  </div> -->
   <div class="pl-logo">
     <img src="/images/aquafoldlogo.png" alt="Aquafold" />
   </div>

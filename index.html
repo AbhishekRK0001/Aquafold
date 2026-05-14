@@ -62,7 +62,7 @@
       position:sticky;
       top:0;
       z-index:100;
-      background:linear-gradient(135deg,#001f1d,#002c36 55%,#001926);
+      background:#0B1F33;
       backdrop-filter:blur(18px);
       border-bottom:1px solid rgba(255,255,255,.08);
       transition:all .35s ease;
@@ -262,7 +262,7 @@
     .footer {
       margin-top:48px;
       border-top:1px solid rgba(255,255,255,.08);
-      background:linear-gradient(135deg,#001f1d,#002c36 55%,#001926);
+      background: #0B1F33;
       color:#e7f5ef;
       position:relative;
       overflow:hidden;
@@ -624,7 +624,7 @@
       position: fixed;
       inset: 0;
       z-index: 9999;
-      background: linear-gradient(135deg, #001f1d, #002c36 55%, #001926);
+      background: white;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -700,7 +700,7 @@
     }
 
     /* Ripple pulse rings around logo */
-    .pl-rings {
+    /* .pl-rings {
       position: absolute;
       width: 180px;
       height: 180px;
@@ -721,11 +721,22 @@
     @keyframes plRing {
       0%   { transform: scale(0.6); opacity: 0.7; }
       100% { transform: scale(2.2); opacity: 0; }
-    }
+    } */
 
     /* Keep page hidden until preloader exits */
     body.loading > *:not(#preloader) {
       visibility: hidden;
+    }
+      /* ── Mobile logo size fixes ── */
+    @media (max-width:720px) {
+      .brand img, .nav-inner .brand img {
+        width: 90px !important;
+        height: auto !important;
+      }
+      .footer-brand .brand img, .footer-brand a img {
+        width: 140px !important;
+        height: auto !important;
+      }
     }
   </style>
 </head>
